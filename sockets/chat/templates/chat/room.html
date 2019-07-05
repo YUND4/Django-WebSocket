@@ -4,14 +4,87 @@
 <head>
     <meta charset="utf-8"/>
     <title>Chat Room</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    
+    h1 {
+        color: white;
+    }
+    
+    body {
+        background-color: black;
+    }
+
+    div {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .render {
+        min-height: 400px;
+        width: 100%;
+    }
+
+    .center-p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
-    <input id="chat-message-input" type="text" size="100"/><br/>
-    <input id="chat-message-submit" type="button" value="Send"/>
+    <div class="center-p">
+        <div class="container">
+            <div class="row p-5">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-2">
+                    <h1>Bienvenido a la sala</h1>
+                    <textarea id="chat-log" class="render form-control"></textarea><br/>
+                    <div class="row">
+                        <div class="col-xs-10 inline">
+                            <input id="chat-message-input" class="form-control" type="text" size="100"/><br/>
+                        </div>
+                        <div class="col-xs-2 inline">
+                            <input id="chat-message-submit" class="btn btn-success" type="button" value="Send"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-2"></div>
+            </div>
+        </div>
+    </div>
 </body>
 <script>
     var roomName = {{ room_name_json }};
+
+    function notifyMe(m) {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification(`Alguien escribio: ${m} `);
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied' && Notification.permission !== 'granted') {
+            Notification.requestPermission(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                var notification = new Notification("Hi there!");
+            }
+            });
+        }
+        console.log('Notificacion lanzada')
+
+        // At last, if the user has denied notifications, and you 
+        // want to be respectful there is no need to bother them any more.
+    };
 
     var chatSocket = new WebSocket(
         'ws://' + window.location.host +
@@ -21,6 +94,7 @@
         var data = JSON.parse(e.data);
         var message = data['message'];
         document.querySelector('#chat-log').value += (message + '\n');
+        notifyMe(message);
     };
 
     chatSocket.onclose = function(e) {
@@ -44,4 +118,6 @@
         messageInputDom.value = '';
     };
 </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
 </html>
