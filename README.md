@@ -24,7 +24,7 @@ _Parado en la caperta principal del proyecto ejecuta los siguientes comandos en 
 ### Inicia tu entorno virtual.
 #### Si utilizas virtualenv puedes hacerlo asi:
 ```
-virtualenv env
+virtualenv env -p python3
 source env/bin/activate
 ```
 #### Se instalan los paquetes necesarios
