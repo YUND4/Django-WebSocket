@@ -10,8 +10,8 @@ _Se entiende esta aplicacion como la manera correcta de inicar un proyecto con w
 
 _Para que este proyecto funcione correctamente necesitas los siguientes paquetes_
 
-* Python (2.7, 3.5, 3.6, 3.7)
-* Django (1.11, 2.0, 2.1)
+* Python (3.5, 3.6, 3.7)
+* Django (2.0, 2.1)
 * Docker (18.09.2, build 6247962)
 
 ### Instalación 🔧
@@ -22,7 +22,7 @@ _Sigue los pasos para que se ejecute correctamenete_
 _Parado en la caperta principal del proyecto ejecuta los siguientes comandos en el CMD o POWERSHELL de windows_
 
 ### Inicia tu entorno virtual.
-#### Si utilizas virtualenv puedes hacerlo asi hazlo asi:
+#### Si utilizas virtualenv puedes hacerlo asi:
 ```
 virtualenv env
 source env/bin/activate
@@ -39,7 +39,7 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
-#### OPTIONAL Crea un super usuario para administrar el poryecto
+#### OPCIONAL Crea un super usuario para administrar el poryecto
 ```
 python manage.py createsuperuser
 ```
@@ -49,6 +49,8 @@ docker run -p 6379:6379 -d redis:2.8
 python manage.py runserver
 
 ```
+
+### pruebalo en http://127.0.0.1:8000/chat/
 
 
 
