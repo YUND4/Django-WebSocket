@@ -33,20 +33,20 @@ pip install -e .
 ```
 #### Se hacen las migraciones
 ```
-python manage.py makemigrations
+python ./sockets/manage.py makemigrations
 ```
 #### Migramos a las base de datos
 ```
-python manage.py migrate
+python ./sockets/manage.py migrate
 ```
 #### OPCIONAL Crea un super usuario para administrar el poryecto
 ```
-python manage.py createsuperuser
+python ./sockets/manage.py createsuperuser
 ```
 #### Inicia los servidores
 ```
 docker run -p 6379:6379 -d redis:2.8
-python manage.py runserver
+python ./sockets/manage.py runserver
 
 ```
 
