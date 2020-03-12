@@ -125,7 +125,7 @@ STATIC_URL = '/static/'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        "BACKEND": "asgi_redis.RedisChannelLayer",
         'CONFIG': {
             "hosts": [('127.0.0.1', 6379)],
         },
