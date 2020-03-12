@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+__VERSION__ = '0.0.1'
 
 # Application definition
 
@@ -125,7 +126,7 @@ STATIC_URL = '/static/'
 
 CHANNEL_LAYERS = {
     'default': {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
         'CONFIG': {
             "hosts": [('127.0.0.1', 6379)],
         },

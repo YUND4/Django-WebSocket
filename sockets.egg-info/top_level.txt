@@ -1,2 +1,1 @@
 channels
-Django

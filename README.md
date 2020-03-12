@@ -1,9 +1,9 @@
 # Django-WebSocket 🚀
 
-## Comenzando 
+## Comenzando
 
-_Esta aplicacion esta diseñada para trabajar con websocket soportado en redis_
-
+_Esta aplicacion esta diseñada para trabajar con websocket soportado en redis._
+_Se entiende esta aplicacion como la manera correcta de inicar un proyecto con websockets_
 
 
 ### Pre-requisitos 📋
@@ -21,26 +21,30 @@ _Sigue los pasos para que se ejecute correctamenete_
 
 _Parado en la caperta principal del proyecto ejecuta los siguientes comandos en el CMD o POWERSHELL de windows_
 
+### Inicia tu entorno virtual.
+#### Si utilizas virtualenv puedes hacerlo asi hazlo asi:
 ```
-
-#Se installan los paquetes necesarios
-
-pip install -r requirements.txt
-
-#Se hacen las migraciones
-
+virtualenv env
+source env/bin/activate
+```
+#### Se instalan los paquetes necesarios
+```
+pip install -e .
+```
+#### Se hacen las migraciones
+```
 python manage.py makemigrations
-
-#Migramos a las base de datos
-
+```
+#### Migramos a las base de datos
+```
 python manage.py migrate
-
-#$ OPTIONAL Crea un super usuario para administrar el poryecto
-
+```
+#### OPTIONAL Crea un super usuario para administrar el poryecto
+```
 python manage.py createsuperuser
-
-#Inicia los servidores 
-
+```
+#### Inicia los servidores
+```
 docker run -p 6379:6379 -d redis:2.8
 python manage.py runserver
 
